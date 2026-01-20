@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
+
 
 
 public class NewClass {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
