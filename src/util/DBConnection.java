@@ -12,6 +12,7 @@ public class DBConnection {
     public static void main(String[] args) {
          Scanner input = new Scanner(System.in);
         //-----------------------INSERT---------------------------
+         /*
         System.out.println("----------------------------------For Insert-----------------------");
         System.out.print("Enter your id: ");
         int userID = input.nextInt();
@@ -27,7 +28,7 @@ public class DBConnection {
         System.out.println("------------------------------For DELETE---------------------------");
         System.out.print("Enter your id for delete: ");
         int userIDDelete = input.nextInt();
-        
+        */
         //-------------------------------UPDATE--------------------------
         
         System.out.println("");
@@ -35,16 +36,22 @@ public class DBConnection {
         System.out.println("");
         System.out.println("------------------------------For Update------------------------------");
         System.out.print("Enter your id: ");
+        int userID = input.nextInt();
+        System.out.print("Enter your updated id: ");
         int userIDUpdate = input.nextInt();
-        System.out.print("Enter your name: ");
-        String userNameUpdate = input.next();
+//        System.out.print("Enter your name: ");
+//        String userNameUpdate = input.next();
+      
+        //-------------------------------GET DATA--------------------------
         
+        System.out.println("  user_id  |  user_name");
+
+
         
-        
-        String sqlInsert = "INSERT INTO TEST (user_id, user_name) VALUES ('"+userID+"', '"+userName+"')";
-        String sqlDelete = "DELETE FROM TEST WHERE user_id = '"+userIDDelete+"'";
-        String sqlUpdate = "UPDATE TEST SET user_name = '"+userNameUpdate+"' WHERE user_id = '"+userIDUpdate+"'";
-        
+//        String sqlInsert = "INSERT INTO TEST (user_id, user_name) VALUES ('"+userID+"', '"+userName+"')";
+//        String sqlDelete = "DELETE FROM TEST WHERE user_id = '"+userIDDelete+"'";
+        String sqlUpdate = "UPDATE TEST SET user_id = '"+userIDUpdate+"' WHERE user_id = '"+userID+"'";
+        String sqlGet = "SELECT * FROM TEST";
         Properties prop = new Properties();
         
         try {
@@ -58,10 +65,10 @@ public class DBConnection {
             
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Test successful"); 
+//            System.out.println("Test successful"); 
             
             // ----------------------------INSERT--------------------------------
-            
+            /*
             Statement stmt = connection.createStatement();
             int status = stmt.executeUpdate(sqlInsert);
             
@@ -85,7 +92,7 @@ public class DBConnection {
             }
             
             stmtDelete.close();
-                      
+               */       
             // ----------------------------UPDATE--------------------------------
 
             
@@ -94,12 +101,20 @@ public class DBConnection {
             int statusUpdate = stmtUpdate.executeUpdate(sqlUpdate);
             
             if (statusUpdate > 0) {
-                System.out.println("Updated");
+//                System.out.println("Updated");
                
             } else {
                 System.out.println("failed");
             }
             stmtUpdate.close();
+            
+            // ----------------------------GET DATA--------------------------------
+            
+            PreparedStatement pstmt = connection.prepareStatement(sqlGet);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                System.out.println("  "+rs.getInt(1)+"  |   " + rs.getString(2));
+            }
                     
         } catch (SQLException se) {
             System.out.println(se.getMessage());
