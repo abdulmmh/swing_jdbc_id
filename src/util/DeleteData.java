@@ -32,5 +32,6 @@ public class DeleteData {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        input.close();
     }
 }
