@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 
 
-public class NewClass {
+public class GetData {
     public static void main(String[] args) {
         
         Connection connection = null;
@@ -17,7 +17,7 @@ public class NewClass {
             String url = "jdbc:mysql://localhost:3306/login_schema";
             String user = "root";
             String password = "root";
-            connection = DriverManager.getConnection(url,  user, password);
+            connection = DriverManager.getConnection(url, user, password);
             String sql = "SELECT * FROM USER_TABLE";
             
             PreparedStatement pstmt = connection.prepareStatement(sql);
