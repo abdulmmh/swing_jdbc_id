@@ -37,5 +37,6 @@ public class UpdateData {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        input.close();
     }
 }
