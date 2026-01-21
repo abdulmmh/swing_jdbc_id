@@ -37,5 +37,6 @@ public class InsertData {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        input.close();
     }
 }
